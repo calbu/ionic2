@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Hello Marinarie fieom</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div *ngIf="!showAnswers">
+    <ul>
+      <li *ngFor="let item of questions; let i=index">
+        <!--<b>{{++i}}-</b> -->
+        <p>{{item.instrebare}}</p>
+        <ul>
+          <li><input type="radio" name="{{i}}" value="a" (click)="setAnswer('a',i)"> {{item.a}}</li>
+          <li><input type="radio" name="{{i}}" value="b" (click)="setAnswer('b',i)"> {{item.b}}</li>
+          <li><input type="radio" name="{{i}}" value="c" (click)="setAnswer('c',i)"> {{item.c}}</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+
+  <p>
+    <!--<button ion-button color="primary" menuToggle>Toggle Menu</button>-->
+  </p>
+
+  <!--<div *ngIf="answers">
+    <ul>
+      <li *ngFor="let item of answers; let i=index">
+        <p>question {{item.questionIndex}} : answer {{item.optionChosen}}</p>
+      </li>
+    </ul>
+  </div>-->
+  
+  <div *ngIf="showAnswers">
+    <p>Raspunsuri corecte: <b>{{getRightAnswersNo()}}</b></p>
+    <ul>
+      <li *ngFor="let item of questions; let i=index">
+        <p> {{item.instrebare}}</p>
+        <ul>
+          <li [style.background-color]="item.corect == 'a'? 'green' : 'a' == answers[i].optionChosen ? 'red':''">
+            <input type="radio" name="{{i}}" value="a" [checked]=" 'a' == answers[i].optionChosen"> {{item.a}}
+          </li>
+          <li [style.background-color]="item.corect == 'b'? 'green' : 'b' == answers[i].optionChosen ? 'red':''">
+            <input type="radio" name="{{i}}" value="b" [checked]="'b' == answers[i].optionChosen"> {{item.b}}
+          </li>
+          <li [style.background-color]="item.corect == 'c'? 'green' : 'c' == answers[i].optionChosen ? 'red':''">
+            <input type="radio" name="{{i}}" value="c" [checked]="'c' == answers[i].optionChosen"> {{item.c}}
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <p>
+    <button ion-button color="primary" [disabled]="disableButton" (click)="validateAnswers()">Afla Raspunsurile</button>
+  </p>
+</ion-content>
