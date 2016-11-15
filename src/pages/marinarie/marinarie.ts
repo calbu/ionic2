@@ -1,4 +1,4 @@
-import {NavController, NavParams} from 'ionic-angular';
+import { NavParams} from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
 import { QuestionService } from '../shared/questions.service';
 import { IQuestion } from '../shared/question';
@@ -9,6 +9,7 @@ import { IQuestion } from '../shared/question';
 })
 
 export class MarinariePage implements OnInit {
+  numerOfResults: number = 10;
   pageTitle: string ='marinarieD';
   questions: IQuestion[];
   errorMessage: string;
@@ -16,14 +17,14 @@ export class MarinariePage implements OnInit {
   disableButton: boolean = true;
   showAnswers: Boolean = false;
 
-  constructor(private _productService: QuestionService, private _navController: NavController, private _navParams: NavParams) { 
-    this.pageTitle = _navParams.get('title');
-    console.log("new page title: "+this.pageTitle);
+  constructor(private _productService: QuestionService, private _navParams: NavParams) { 
+    this.pageTitle = _navParams.get('title');    
+    console.log("page title is: " + this.pageTitle);
   }
 
   ngOnInit(): void {    
     console.log('Init');
-    this._productService.getQuestions(this.pageTitle, 2)
+    this._productService.getQuestions(this.pageTitle, this.numerOfResults)
       .subscribe(questions => this.questions = questions,
       error => this.errorMessage = <any>error);
   };
@@ -54,7 +55,7 @@ export class MarinariePage implements OnInit {
   };
 
   setShowButton(): void {
-    if (this.answers && this.answers.length == 2) {
+    if (this.answers && this.answers.length == this.numerOfResults) {
       this.disableButton = false;
     }
     else {

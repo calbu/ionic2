@@ -47,9 +47,9 @@ export class MyApp {
   openPage(page) {
     // close the menu when clicking a link from the menu
     this.menu.close();
-    this.nav.push(page.component, { title: page.title });
-
+    this.nav.push(page.component, { title: page.title });    
+    //this.nav.rootParams.set({ title: page.title })
     // navigate to the new page if it is not the current page
-    this.nav.setRoot(page.component);
+    //this.nav.setRoot(page.component);
   }
 }
