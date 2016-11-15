@@ -32,7 +32,7 @@ export class MyApp {
       { title: 'ManevraAgrement_C', component: MarinariePage },
       { title: 'conducereD', component: MarinariePage },
       { title: 'MarinarieAgrement_C', component: MarinariePage },
-      { title: 'MarinarieD', component: MarinariePage },
+      { title: 'marinarieD', component: MarinariePage },
     ];
   }
 
