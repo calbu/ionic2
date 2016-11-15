@@ -1,7 +1,7 @@
 import { NavParams} from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
-import { QuestionService } from '../shared/questions.service';
-import { IQuestion } from '../shared/question';
+import { QuestionService } from '../../providers/questions.service';
+import { IQuestion } from '../../models/question';
 
 
 @Component({
@@ -17,12 +17,12 @@ export class MarinariePage implements OnInit {
   disableButton: boolean = true;
   showAnswers: Boolean = false;
 
-  constructor(private _productService: QuestionService, private _navParams: NavParams) { 
-    this.pageTitle = _navParams.get('title');    
+  constructor(private _productService: QuestionService, private _navParams: NavParams) {
+    this.pageTitle = _navParams.get('title');
     console.log("page title is: " + this.pageTitle);
   }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     console.log('Init');
     this._productService.getQuestions(this.pageTitle, this.numerOfResults)
       .subscribe(questions => this.questions = questions,
