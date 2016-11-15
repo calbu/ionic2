@@ -1,3 +1,4 @@
+import {NavController, NavParams} from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
 import { QuestionService } from '../shared/questions.service';
 import { IQuestion } from '../shared/question';
@@ -8,17 +9,21 @@ import { IQuestion } from '../shared/question';
 })
 
 export class MarinariePage implements OnInit {
+  pageTitle: string ='marinarieD';
   questions: IQuestion[];
   errorMessage: string;
   answers: any[] = [];
   disableButton: boolean = true;
   showAnswers: Boolean = false;
 
-  constructor(private _productService: QuestionService) { }
+  constructor(private _productService: QuestionService, private _navController: NavController, private _navParams: NavParams) { 
+    this.pageTitle = _navParams.get('title');
+    console.log("new page title: "+this.pageTitle);
+  }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     console.log('Init');
-    this._productService.getQuestions('marinarieD', 2)
+    this._productService.getQuestions(this.pageTitle, 2)
       .subscribe(questions => this.questions = questions,
       error => this.errorMessage = <any>error);
   };

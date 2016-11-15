@@ -17,9 +17,9 @@ export class MyApp {
 
   // make HelloIonicPage the root (or first) page
   rootPage: any = HelloIonicPage;
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string, component: any }>;
 
-  constructor(public platform: Platform,public menu: MenuController) {
+  constructor(public platform: Platform, public menu: MenuController) {
     this.initializeApp();
 
     // set our app's pages
@@ -47,6 +47,8 @@ export class MyApp {
   openPage(page) {
     // close the menu when clicking a link from the menu
     this.menu.close();
+    this.nav.push(page.component, { title: page.title });
+
     // navigate to the new page if it is not the current page
     this.nav.setRoot(page.component);
   }
