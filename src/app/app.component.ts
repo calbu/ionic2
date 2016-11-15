@@ -23,8 +23,7 @@ export class MyApp {
     this.initializeApp();
 
     // set our app's pages
-    this.pages = [
-      { title: 'Hello Ionic', component: HelloIonicPage },
+    this.pages = [      
       { title: 'My First List', component: ListPage },
       { title: 'colregA', component: MarinariePage }, //  "colregA",  "RND",  "NavigatieAgrement_C",  "marinarieD",  "ManevraAgrement_C",  "conducereD",  "MarinarieAgrement_C"
       { title: 'RND', component: MarinariePage },
