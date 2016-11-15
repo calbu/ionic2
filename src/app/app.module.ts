@@ -5,7 +5,7 @@ import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 import { MarinariePage } from '../pages/marinarie/marinarie';
-import { QuestionService } from '../pages/shared/questions.service';
+import { QuestionService } from '../providers/questions.service';
 
 @NgModule({
   declarations: [
