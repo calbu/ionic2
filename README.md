@@ -1,3 +1,3 @@
-# ionic2
+# marinarie
 
-Description of the project will be add soon !
+Test application which displays a questionaire and validates the responses.  
