@@ -1,19 +1,24 @@
 import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
+import { HomePage } from '../pages/home/home';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 import { MarinariePage } from '../pages/marinarie/marinarie';
 import { QuestionService } from '../providers/questions.service';
+import { Userpage } from '../pages/userpage/userpage';
+import { Signup } from '../pages/signup/signup';
+import { AuthService } from '../providers/authservice';
 
 @NgModule({
   declarations: [
     MyApp,
-    HelloIonicPage,
+    HomePage,
     MarinariePage,
     ItemDetailsPage,
-    ListPage
+    ListPage,
+    Userpage,
+    Signup
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -21,13 +26,16 @@ import { QuestionService } from '../providers/questions.service';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HelloIonicPage,
+    HomePage,
     MarinariePage,
     ItemDetailsPage,
-    ListPage
+    ListPage,
+    Userpage,
+    Signup
   ],
   providers: [
     QuestionService,
+    AuthService
   ]
 })
-export class AppModule {}
+export class AppModule { }
