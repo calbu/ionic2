@@ -3,7 +3,10 @@ import { Http, Headers } from '@angular/http';
 
 @Injectable()
 export class AuthService {
-
+	baseUrl = '/api/';
+	addUserUrl = 'adduser';
+    authenticateUrl = 'authenticate';
+    getinfoUrl = 'getinfo';
     isLoggedin: boolean;
     AuthToken;
     data = {
@@ -18,7 +21,7 @@ export class AuthService {
     }
 
     storeUserCredentials(token) {
-        window.localStorage.setItem('raja', token);
+        window.localStorage.setItem('currentUser', token);
         this.useCredentials(token);
 
     }
@@ -29,7 +32,7 @@ export class AuthService {
     }
 
     loadUserCredentials() {
-        var token = window.localStorage.getItem('raja');
+        var token = window.localStorage.getItem('currentUser');
         this.useCredentials(token);
     }
 
@@ -40,12 +43,11 @@ export class AuthService {
     }
 
     authenticate(user) {
-        var creds = "name=" + user.name + "&password=" + user.password;
         var headers = new Headers();
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('Content-Type', 'application/json');
 
         return new Promise(resolve => {
-            this.http.post('http://localhost:3333/authenticate', creds, { headers: headers }).subscribe(data => {
+            this.http.post(this.baseUrl + this.authenticateUrl, JSON.stringify(user), { headers: headers }).subscribe(data => {
                 if (data.json().success) {
                     this.storeUserCredentials(data.json().token);
                     resolve(true);
@@ -55,13 +57,13 @@ export class AuthService {
             });
         });
     }
-    adduser(user) {
-        var creds = "name=" + user.name + "&password=" + user.password;
+    adduser(user) {        
+        
         var headers = new Headers();
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('Content-Type', 'application/json');
 
         return new Promise(resolve => {
-            this.http.post('http://localhost:3333/adduser', creds, { headers: headers }).subscribe(data => {
+            this.http.post(this.baseUrl + this.addUserUrl, JSON.stringify(user), { headers: headers }).subscribe(data => {
                 if (data.json().success) {
                     resolve(true);
                 }
@@ -71,13 +73,13 @@ export class AuthService {
         });
     }
 
-    getinfo() {
+    getinfo(): any {
         return new Promise(resolve => {
             var headers = new Headers();
             this.loadUserCredentials();
             console.log(this.AuthToken);
             headers.append('Authorization', 'Bearer ' + this.AuthToken);
-            this.http.get('http://localhost:3333/getinfo', { headers: headers }).subscribe(data => {
+            this.http.get(this.baseUrl + this.getinfoUrl, { headers: headers }).subscribe(data => {
                 if (data.json().success)
                     resolve(data.json());
                 else

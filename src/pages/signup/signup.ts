@@ -9,13 +9,19 @@ import { AuthService } from '../../providers/authservice';
 export class Signup {
   newcreds = {
     name: '',
-    password: ''
-  }
+    password: '',
+    email:'',
+    phone:'',
+    city:''
+  };
+
   constructor(public navCtrl: NavController, public authservice: AuthService, public alertCtrl: AlertController) { }
 
   register(user) {
+    console.log(`save user ${JSON.stringify(user)}`);
     this.authservice.adduser(user).then(data => {
       if (data) {
+        console.log(`user created ${JSON.stringify(data)}`);
         var alert = this.alertCtrl.create({
           title: 'Success',
           subTitle: 'User Created',

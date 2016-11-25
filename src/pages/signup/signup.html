@@ -8,15 +8,27 @@
 
 
 <ion-content padding>
-<ion-list>
-      <ion-item>
-          <ion-label floating>Username</ion-label>
-          <ion-input [(ngModel)] = "newcreds.name" type="text"></ion-input>
-      </ion-item>
-      <ion-item>
-          <ion-label floating>Password</ion-label>
-          <ion-input [(ngModel)] = "newcreds.password" type="password"></ion-input>
-      </ion-item>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Username</ion-label>
+      <ion-input [(ngModel)]="newcreds.name" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input [(ngModel)]="newcreds.password" type="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input [(ngModel)]="newcreds.email" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Phone</ion-label>
+      <ion-input [(ngModel)]="newcreds.phone" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>City</ion-label>
+      <ion-input [(ngModel)]="newcreds.city" type="text"></ion-input>
+    </ion-item>
   </ion-list>
   <button ion-button (click)="register(newcreds)">Register</button>
 </ion-content>

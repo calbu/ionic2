@@ -14,18 +14,18 @@ export class HomePage {
 
   usercreds = {
     name: '',
-    password: ''
+    password: '',
   };
 
   constructor(public navCtrl: NavController, public authservice: AuthService) { }
 
   login(user) {
-    this.navCtrl.setRoot(Userpage);
-    // this.authservice.authenticate(user).then(data => {
-    //   if (data) {
-    //     this.navCtrl.setRoot(Userpage);
-    //   }
-    // });
+    //this.navCtrl.setRoot(Userpage);
+    this.authservice.authenticate(user).then(data => {
+      if (data) {
+        this.navCtrl.setRoot(Userpage);
+      }
+    });
   }
 
   signup() {

@@ -39,16 +39,15 @@ export class Userpage {
   }
 
   getinfo() {
-    this.authservice.getinfo().then(data => {
-      // if (data.success) {
-      //   var alert = this.alertCtrl.create({
-      //     title: data.success,
-      //     subTitle: data.msg,
-      //     buttons: ['ok']
-      //   });
-      //   alert.present();
-      // }
-
+    this.authservice.getinfo().then(data => {      
+      if (data.success) {
+        var alert = this.alertCtrl.create({
+          title: data.success,
+          subTitle: data.msg,
+          buttons: ['ok']
+        });
+        alert.present();
+      }
     })
   }
 
