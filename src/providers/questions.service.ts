@@ -11,16 +11,22 @@ import { IQuestion } from '../models/question';
 export class QuestionService {
 	private baseUrl = '/api/';
 	private _productUrl = 'getquestions';
-
+	isLoggedin: boolean = false;
+	AuthToken;
 	constructor(private _http: Http) { }
 
 	getQuestions(questionType: string, numberOfQuestions: number): Observable<IQuestion[]> {
 		var url = this.baseUrl + this._productUrl + '?categorie=' + questionType + '&no=' + numberOfQuestions;
 		const headers = new Headers();
-        headers.append('Access-Control-Allow-Headers', 'Content-Type');
-        headers.append('Access-Control-Allow-Methods', 'GET');
-        headers.append('Access-Control-Allow-Origin', '*');
-		return this._http.get(url, {headers: headers})
+		this.loadUserCredentials();
+		console.log(this.AuthToken);
+
+		headers.append('Authorization', 'JWT ' + this.AuthToken);
+		// headers.append('Access-Control-Allow-Headers', 'Content-Type');
+		// headers.append('Access-Control-Allow-Methods', 'GET');
+		// headers.append('Access-Control-Allow-Origin', '*');
+
+		return this._http.get(url, { headers: headers })
 			.map((response: Response) => <IQuestion[]>response.json())
 			.do(data => console.log('All: ' + JSON.stringify(data)))
 			.catch(this.handleError);
@@ -29,5 +35,14 @@ export class QuestionService {
 	private handleError(error: Response) {
 		console.error(error);
 		return Observable.throw(error.json().error || 'Server error');
+	}
+
+	loadUserCredentials() {
+		var token = window.localStorage.getItem('currentUser');
+		this.useCredentials(token);
+	}
+	useCredentials(token) {
+		this.isLoggedin = true;
+		this.AuthToken = token;
 	}
 }

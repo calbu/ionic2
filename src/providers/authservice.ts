@@ -78,7 +78,7 @@ export class AuthService {
             var headers = new Headers();
             this.loadUserCredentials();
             console.log(this.AuthToken);
-            headers.append('Authorization', 'Bearer ' + this.AuthToken);
+            headers.append('Authorization', 'JWT ' + this.AuthToken);
             this.http.get(this.baseUrl + this.getinfoUrl, { headers: headers }).subscribe(data => {
                 if (data.json().success)
                     resolve(data.json());
