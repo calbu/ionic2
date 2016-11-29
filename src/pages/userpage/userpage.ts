@@ -21,8 +21,7 @@ export class Userpage {
 
   constructor(public navCtrl: NavController, public authservice: AuthService, public alertCtrl: AlertController, public menu: MenuController) {
     // set our app's pages
-    this.pages = [
-      { title: 'My First List', component: ListPage },
+    this.pages = [      
       { title: 'colregA', component: MarinariePage }, //  "colregA",  "RND",  "NavigatieAgrement_C",  "marinarieD",  "ManevraAgrement_C",  "conducereD",  "MarinarieAgrement_C"
       { title: 'RND', component: MarinariePage },
       { title: 'NavigatieAgrement_C', component: MarinariePage },

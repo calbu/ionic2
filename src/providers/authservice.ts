@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 
 @Injectable()
@@ -77,13 +77,17 @@ export class AuthService {
         return new Promise(resolve => {
             var headers = new Headers();
             this.loadUserCredentials();
-            console.log(this.AuthToken);
+            //console.log(this.AuthToken);
             headers.append('Authorization', 'JWT ' + this.AuthToken);
             this.http.get(this.baseUrl + this.getinfoUrl, { headers: headers }).subscribe(data => {
-                if (data.json().success)
+                if (data.json().success){
+                    console.log(data.json());
                     resolve(data.json());
-                else
+                }
+                else{
+                    console.log(data.json());
                     resolve(false);
+                }
             });
         })
     }

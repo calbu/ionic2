@@ -22,9 +22,6 @@ export class QuestionService {
 		console.log(this.AuthToken);
 
 		headers.append('Authorization', 'JWT ' + this.AuthToken);
-		// headers.append('Access-Control-Allow-Headers', 'Content-Type');
-		// headers.append('Access-Control-Allow-Methods', 'GET');
-		// headers.append('Access-Control-Allow-Origin', '*');
 
 		return this._http.get(url, { headers: headers })
 			.map((response: Response) => <IQuestion[]>response.json())
